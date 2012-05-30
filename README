@@ -1,0 +1,52 @@
+#
+# README
+#
+# By Mats Ljungquist
+#
+
+1. Munchy, Download + Install
+ 
+Munchy is on GitHub.
+ 
+  http://github.com/matslj/munchy/
+ 
+Download it and then change the following define in 'config.php':
+
+- define('WS_SITELINK',   'http://<your domain + path to where index.php is located>/'); // Link to site.
+
+So if you for example have your index.php in localhost/munchy/ then the above define should read:
+
+define('WS_SITELINK',   'http://localhost/munchy/'); // Link to site.
+
+Then point a browser to your installed version of Munchy. Voila! Done.
+
+But to get all the facilities of Munchy up and running, you also have to config the database. To do this
+edit the file <your install directory>/sql/config.php with information about your database. Then,
+back in the browser, pointing at your installed version of munchy, click 'Install' and then
+'Destroy current database and create from scratch'. This creates the necessary tables and stored routines as well
+as populating the tables with some example data.
+
+Now the complete power of Munchy is at your hands.
+ 
+An example of a pure standard installation of Munchy is available here. Review it before moving
+on.
+ 
+  http://www.phpersia.org/persia
+ 
+ 
+2. Munchy, A template for websites
+ 
+Munchy is a part of a school project in the course 'dbwebb2' at http://www.bth.se.
+ 
+3. Munchy, The name
+ 
+The name Munchy is a tribute to the first game I acuired for my c64 back in the 80's. The game's name was of course Munchy.
+
+   http://www.gb64.com/game.php?id=5085&d=36
+ 
+5. Munchy, The license
+ 
+Free software. No warranty.
+ 
+ .
+..: &copy; Mats Ljungquist, 2012

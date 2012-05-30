@@ -1,0 +1,211 @@
+/* =====================================================================================
+ *
+ *
+ * All definitions related to colors and background images.
+ * Change color scheme in this file.
+ *
+ */
+
+
+/* -------------------------------------------------------------------------------------
+/* Color scheme
+/* Palette URL: http://colorschemedesigner.com/#0011DuBi2dgI1 */
+.primary-1 { background-color: #900606 }
+.primary-2 { background-color: #811212 } /* darklight */
+.primary-3 { background-color: #7B0404 } /* dark */
+.primary-4 { background-color: #DE5454 } /* lightdark */
+.primary-5 { background-color: #DE9090 } /* light */
+
+/* -------------------------------------------------------------------------------------
+/* Alt color scheme
+/* Palette URL: http://colorschemedesigner.com/#0G11Tw0w0w0w0 */
+.primary-1 { background-color: #FF8E00 }
+.primary-2 { background-color: #BF8030 } /* darklight */
+.primary-3 { background-color: #A65C00 } /* dark */
+.primary-4 { background-color: #FFAA40 } /* lightdark */
+.primary-5 { background-color: #FFC173 } /* light */
+
+/* -------------------------------------------------------------------------------------
+/* Munchy scheme */
+.primary-1 { background-color: #4040E0 } /* Labyrintkantblå */
+.primary-2 { background-color: #A0A0FF } /* highscoretext och punkter - ljusblå */
+.primary-3 { background-color: #FFFFFF } /* Powerups - vita */
+.primary-4 { background-color: #101010 } /* bakgrundsfärg - svartish */
+.primary-5 { background-color: #FFFF40 } /* pac-man-gul (och huvudtext) */
+.primary-6 { background-color: #40E040 } /* Grönt - på körsbärsstjälk*/
+.primary-7 { background-color: #E04040 } /* pac-man-gul (och huvudtext) */
+
+/* -------------------------------------------------------------------------------------
+/* Pagestructure */
+html,
+body {}
+
+div#wrap {
+    color: #A0A0FF;
+}
+
+div#top {
+	background: #6996D3;
+}
+
+header {}
+
+div#title {
+	background: #101010 /* dark */ /*#970601 url(nav-tab.png) repeat-x*/;
+}
+div#title p {
+	color: #FFFF40;
+        background-image: url(munchy10_30procent.PNG);
+        background-repeat: no-repeat;
+        background-position: right;
+        margin-right: 30px;
+}
+
+footer {
+	background: #6996D3;
+}
+footer p {
+	color: #101010;
+}
+
+div#bottom {
+	background: #6996D3;
+}
+div#bottom p {
+	color: #101010;
+}
+
+div.sidebox {
+	background: #6996D3;
+}
+
+div#login p {
+    color: #FFFFFF;
+}
+
+/* -------------------------------------------------------------------------------------
+ *
+ * Links
+ *
+ */
+
+a, a:visited {
+	color: #FFAA40;
+}
+
+a:hover {
+	color: #A65C00;
+}
+
+/* -------------------------------------------------------------------------------------
+ *
+ * Top Links
+ *
+ */
+
+#top a, #top a:visited {
+	color: #101010;
+}
+
+#top a:hover {
+	color: #FFFFFF;
+}
+
+
+/* -------------------------------------------------------------------------------------
+/* Navigation bar */
+
+#nav {}
+#nav ul {
+	background: #101010;
+}
+#nav li {}
+#nav a {
+	border-right: 8px solid #4040E0;
+	border-bottom: none;
+	color: #A0A0FF;
+	background: #101010;
+}
+
+#nav a:hover,
+#nav a:focus {
+        color: #101010;
+	background: #FFFFFF;
+}
+#nav .sel a {
+	color: #101010;
+	background: #FFFFFF;
+}
+#nav .sel a:hover,
+#nav .sel a:focus {
+	color: #101010;
+	background: #FFFFFF;
+}
+
+/* -------------------------------------------------------------------------------------
+ *
+ * Other functional divs, not part of the main structure of the website
+ *
+ */
+
+div.login {
+	background-color: transparent;
+}
+
+div.errorMessage {
+	background-color: #DE9090;
+	color: #111111;
+}
+
+/* To display code. */
+fieldset.code {
+	background-color: #101010;
+	color: #111111;
+}
+
+
+/* -------------------------------------------------------------------------------------
+ *
+ * Fonts
+ *
+ */
+
+h1:after {
+    padding-left: 10px;
+    content:url(munchy_pacman_30procent.PNG);
+}
+h1 {
+    color: #FFFF40;
+}
+h2 {
+    color: #A0A0FF;
+}
+h3.menu {}
+
+p.small {
+    color: #A0A0FF;
+}
+
+/* Links in the bottom paragraph */
+div#bottom a,
+div#bottom a:visited {
+	color: #101010;
+}
+
+div#bottom a:hover {
+	color: #FFFFFF;
+}
+
+/* -------------------------------------------------------------------------------------
+ *
+ * Tables
+ *
+ */
+
+th, td {
+	color: #111111;
+}
+
+th {
+	background: #cccccc;
+}

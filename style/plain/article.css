@@ -1,0 +1,87 @@
+/* =====================================================================================
+ *
+ *
+ * All definitions related displaying an article
+ *
+ *
+ */
+
+
+/* ------------------------------------------------------------------------------------- */
+/* --                                                                                    */
+/* -- article general                                                                    */
+/* --                                                                                    */
+/* ------------------------------------------------------------------------------------- */
+
+article.general {
+	font-family: Verdana, Sans-serif;
+}
+
+article.general h1 {
+	;
+}
+
+article.general p {
+	font-size: 1.0em;
+}
+
+article.general p.notice {
+	font-size: x-small;
+	font-style: italic;
+}
+
+/* ------------------------------------------------------------------------------------- */
+/* --                                                                                    */
+/* -- List of topics                                                                     */
+/* --                                                                                    */
+/* ------------------------------------------------------------------------------------- */
+#topicList {
+    font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+    width:100%;
+    border-collapse:collapse;
+    color: #FFFFFF;
+}
+
+#topicList td, #customers th
+{
+font-size:1em;
+border-width: 0px;
+padding:3px 7px 2px 7px;
+color: #A0A0FF;
+}
+#topicList th
+{
+font-size:1.1em;
+text-align:left;
+padding-top:5px;
+padding-bottom:4px;
+background-color:#4040E0;
+color:#ffffff;
+}
+
+#topicList td:first-child, #customers th:first-child
+{
+width:60%;
+}
+
+#topicList tr.alt td
+{
+color:#ffffff;
+background-color:#A0A0FF;
+}
+
+#topicList a, #topicList a:visited {
+	color: #A0A0FF;
+}
+
+#topicList a:hover {
+	color: #FFFFFF;
+}
+
+#topicList tr.alt td a, #topicList tr.alt td a:visited {
+	color: #FFFFFF;
+}
+
+#topicList tr.alt td a:hover {
+	color: #A0A0FF;
+}
