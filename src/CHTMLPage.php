@@ -74,7 +74,7 @@ class CHTMLPage {
         <![endif]-->
     </head>
     <body>
-        <div id='owrap'>
+        <div class='owrap'>
             <div id='top'>{$info}{$top}</div>
         </div>
         <div id='wrap'>
@@ -86,7 +86,7 @@ class CHTMLPage {
             </header>
             {$body}
         </div>
-        <div id='owrap'>
+        <div class='owrap'>
             <footer><p>{$footer}</p></footer>
             <div id='bottom'><p>{$timer}{$w3c}</p></div>
         </div>

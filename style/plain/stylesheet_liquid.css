@@ -38,7 +38,7 @@ div#wrap {												/* wraps all divs of page */
     background: #101010;
 }
 
-div#owrap {												/* wraps all divs of page */
+div.owrap {												/* wraps all divs of page */
     margin: 0 auto;
     padding: 0;
     min-width: 500px;
