@@ -85,7 +85,7 @@ while($row = $results[2]->fetch_object()) {
 	$posts .= <<<EOD
 <tr>
 <td>
-<img src='{$row->avatar}'><br>
+<img alt="Avatar" src='{$row->avatar}'><br>
 <p class='small'>
 {$row->username}<br>
 {$row->created}

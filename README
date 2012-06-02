@@ -10,7 +10,8 @@ Munchy is on GitHub.
  
   http://github.com/matslj/munchy/
  
-Download it and then change the following define in 'config.php':
+Download it either by 'git clone' or as a tag-zip (preferably the latest tag) and
+then change the following define in 'config.php':
 
 - define('WS_SITELINK',   'http://<your domain + path to where index.php is located>/'); // Link to site.
 
@@ -31,7 +32,7 @@ Now the complete power of Munchy is at your hands.
 An example of a pure standard installation of Munchy is available here. Review it before moving
 on.
  
-  http://www.phpersia.org/persia
+  http://www.student.bth.se/~malj11/dbwebb2/munchy/
  
  
 2. Munchy, A template for websites

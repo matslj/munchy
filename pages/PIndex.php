@@ -3,9 +3,9 @@
 //
 // PIndex.php
 //
-// The home-page
+// A WYSIWYG editor
 //
-// Author: Mikael Roos, mos@bth.se
+// Author: Mats Ljungquist
 //
 
 
@@ -24,23 +24,37 @@ $pc = new CPageController();
 $intFilter = new CInterceptionFilter();
 
 $intFilter->FrontControllerIsVisitedOrDie();
-//$intFilter->UserIsSignedInOrRecirectToSignIn();
-//$intFilter->UserIsMemberOfGroupAdminOrDie();
-
+$img = WS_IMAGES;
 
 // -------------------------------------------------------------------------------------------
 //
 // Page specific code
 //
-
-$html = <<<EOD
-<h1>Welcome</h1>
+$htmlMain = <<<EOD
+<h1>Munchy</h1>
+<h2>A dbwebb2 forum</h2>
 <p>
-This is the index-page (page/home/PIndex.php). Change it to get going. Review the PTemplate.php
-(page/home/PTemplate.php) for a more complete pagecontroller.
+This is the result of the final project in the course dbwebb2 @ <a href="http://www.bth.se/">BTH</a>.
+</p>
+<p>
+Information about the project and how to install it can be found under <a href="?p=about">about</a>.
+</p>
+<p>
+As wysiwyg-editor I've used <a href="http://nicedit.com">nicedit</a>.
+</p>
+<p>
+The 'Munchy'-characters is re-created by me using Windows Paint. The colors may differ from the in game colors.
 </p>
 EOD;
 
+$htmlLeft 	= "";
+$htmlRight	= "";
+
+// -------------------------------------------------------------------------------------------
+//
+// Local menu?
+//
+// require_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'config_nav.php');
 
 // -------------------------------------------------------------------------------------------
 //
@@ -48,8 +62,7 @@ EOD;
 //
 $page = new CHTMLPage();
 
-$page->printPage('Index (change this)', "", $html, "");
+$page->printPage('Munchy - a forum template', $htmlLeft, $htmlMain, $htmlRight);
 exit;
-
 
 ?>

@@ -22,7 +22,7 @@ define('WS_FAVICON', 	'img/favicon.ico'); // Small icon to display in browser
 define('WS_FOOTER', 	'Munchy &copy; 2012 by Mats Ljungquist Home Copyrights Privacy About');	// Footer at the end of the page.
 define('WS_VALIDATORS', TRUE);	            // Show links to w3c validators tools.
 define('WS_TIMER', 	TRUE);              // Time generation of a page and display in footer.
-define('WS_SHOWINFO', 	TRUE);              // Visa inforad.
+define('WS_SHOWINFO', 	FALSE);              // Visa inforad.
 define('WS_CHARSET', 	'utf-8');           // Use this charset
 define('WS_LANGUAGE', 	'sv');              // Default language
 define('WS_IMAGES',			WS_SITELINK . 'img/');

@@ -44,7 +44,7 @@ switch ($gPage) {
     // Hem
     // changing from PIndex.php to forum/PIndex.php
     //
-    case 'home': require_once(TP_PAGESPATH . 'forum/PIndex.php');
+    case 'home': require_once(TP_PAGESPATH . 'PIndex.php');
         break;
     case 'about': require_once(TP_PAGESPATH . 'PAbout.php');
         break;
