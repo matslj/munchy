@@ -1,0 +1,41 @@
+/* =====================================================================================
+ *
+ *
+ * All definitions related displaying information related to account
+ *
+ *
+ */
+
+/* ------------------------------------------------------------------------------------- */
+/* --                                                                                    */
+/* -- List of user accounts                                                              */
+/* --                                                                                    */
+/* ------------------------------------------------------------------------------------- */
+#userAccounts {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    border: 8px dashed #4040E0;
+    padding: 10px;
+}
+
+#userAccounts td {
+    padding-right: 5px;
+    border-bottom: 8px groove #4040E0;
+}
+
+#userAccounts th {
+    padding: 10px;
+}
+
+/* ------------------------------------------------------------------------------------- */
+/* --                                                                                    */
+/* -- User profile                                                                       */
+/* --                                                                                    */
+/* ------------------------------------------------------------------------------------- */
+#userProfile {
+    margin-left: auto;
+    margin-right: auto;
+    border: 8px dashed #4040E0;
+    padding: 10px;
+}
