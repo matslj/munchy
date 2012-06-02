@@ -40,7 +40,7 @@ $displayAs = $pc->GETisSetOrSetDefault('pc_display', '');
 $htmlLeft = "";
 
 $htmlMain = <<<EOD
-<h1>Admin: Visa användarkonton</h1>
+<h1>Admin: Show user accounts</h1>
 EOD;
 
 $htmlRight = "";
@@ -87,7 +87,7 @@ $res = $db->Query($query);
 //
 
 $htmlMain .= <<< EOD
-<table border='1'>
+<table id="userAccounts">
 <tr>
 <th><a href='{$httpRef}idUser'>Id</a></th>
 <th><a href='{$httpRef}accountUser'>Account</a></th>

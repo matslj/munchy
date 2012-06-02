@@ -13,6 +13,7 @@
 @import url("login.css"); 		/* standard login div and related */
 @import url("editor.css"); 		/* for WYSIWYG editor */
 @import url("article.css"); 		/* for displaying articles */
+@import url("accounts.css"); 		/* for displaying acount information */
 
 
 /* -------------------------------------------------------------------------------------
@@ -301,5 +302,4 @@ div.sourcecode {
 	background: white;
 	padding-left: 10px;
 }
-
 

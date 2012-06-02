@@ -20,7 +20,9 @@ class CPageController {
 	// Constructor
 	//
 	public function __construct() {
-		;
+		$_SESSION['history2'] = CPageController::SESSIONisSetOrSetDefault('history1');
+		$_SESSION['history1'] = CPageController::CurrentURL();
+		//print_r($_SESSION);
 	}
 
 
@@ -70,6 +72,14 @@ class CPageController {
 		return isset($_POST["$aEntry"]) && !empty($_POST["$aEntry"]) ? $_POST["$aEntry"] : $aDefault;
 	}
 
+        // ------------------------------------------------------------------------------------
+	//
+	// Check if corresponding $_SESSION[''] is set, then use it or return the default value.
+	//
+	public static function SESSIONisSetOrSetDefault($aEntry, $aDefault = '') {
+
+		return isset($_SESSION["$aEntry"]) && !empty($_SESSION["$aEntry"]) ? $_SESSION["$aEntry"] : $aDefault;
+	}
 
 	// ------------------------------------------------------------------------------------
 	//
@@ -123,10 +133,18 @@ class CPageController {
 	// Static function
 	// Redirect to another page
 	// Support $aUri to be local uri within site or external site (starting with http://)
+	// If empty, redirect to home page of current module.
 	//
 	public static function RedirectTo($aUri) {
-
-		if(strncmp($aUri, "http://", 7)) {
+                if (empty($aUri)) {
+                    $aUri = WS_HOME;
+                    $_SESSION['errorMessage'] = "The requested page does not exist";
+                }
+		if(!strncmp($aUri, "http://", 7)) {
+			;
+		} else if(!strncmp($aUri, "?", 1)) {
+			$aUri = WS_SITELINK . "{$aUri}";
+		} else {
 			$aUri = WS_SITELINK . "?p={$aUri}";
 		}
 

@@ -85,3 +85,28 @@ background-color:#A0A0FF;
 #topicList tr.alt td a:hover {
 	color: #A0A0FF;
 }
+
+/* ------------------------------------------------------------------------------------- */
+/* --                                                                                    */
+/* -- Posts on topic                                                                     */
+/* --                                                                                    */
+/* ------------------------------------------------------------------------------------- */
+
+#topicPosts {
+    width:99%;
+}
+
+#topicPosts td {
+    border-bottom: solid 2px #eee;
+    text-align: left;
+    vertical-align: top;
+    color: #A0A0FF;
+}
+
+#topicPosts td:first-child {
+    width: 20%;
+}
+
+#topicPosts td div {
+    float: right;
+}

@@ -50,10 +50,7 @@ $htmlLeft = "";
 //$headerMenu = $pc->GetSidebarMenu(unserialize(MENU_ACCOUNTBAR));
 
 $htmlMain = <<<EOD
-<h1>Konto</h1>
-<div id='settingsmenu'>
-hjhj
-</div>
+<h1>Account settings</h1>
 EOD;
 
 $htmlRight = "";
@@ -83,8 +80,7 @@ $res = $db->Query($query);
 $row = $res->fetch_object();
 
 $htmlMain .= <<< EOD
-<fieldset>
-<table border='0'>
+<table id="userProfile">
 <tr>
 <th>Id</th>
 <td><input type='text' tab='10' name='idUser' size='80' readonly value='{$row->idUser}'></td>
@@ -106,7 +102,6 @@ $htmlMain .= <<< EOD
 <td><input type='text' tab='13' name='nameGroup' readonly size='80' value='{$row->nameGroup}'></td>
 </tr>
 </table>
-</fieldset>
 EOD;
 
 

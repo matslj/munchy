@@ -28,6 +28,8 @@ define('WS_LANGUAGE', 	'sv');              // Default language
 define('WS_IMAGES',			WS_SITELINK . 'img/');
 define('WS_JAVASCRIPT',	WS_SITELINK . 'js/');	// JavaScript code
 
+define('WS_HOME',	'home');	// Starting page
+
 // -------------------------------------------------------------------------------------------
 //
 // Settings for commonly used external resources, for example javascripts.

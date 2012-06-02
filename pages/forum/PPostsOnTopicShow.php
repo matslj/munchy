@@ -75,7 +75,7 @@ $results[1]->close();
 
 // Get the list of posts
 $posts = <<<EOD
-<table width='99%'>
+<table id="topicPosts">
 EOD;
 while($row = $results[2]->fetch_object()) {
 
@@ -84,15 +84,15 @@ while($row = $results[2]->fetch_object()) {
 
 	$posts .= <<<EOD
 <tr>
-<td width='20%'style='border-bottom: solid 2px #eee'>
+<td>
 <img src='{$row->avatar}'><br>
 <p class='small'>
 {$row->username}<br>
 {$row->created}
 </p>
 </td>
-<td style='border-bottom: solid 2px #eee; text-align: left; vertical-align: top;'>
-<div style='float: right;'>
+<td>
+<div>
 {$isEditable}
 <a class='noUnderline' name='post-{$row->id}' title='Link to this post' href='#post-{$row->id}'>#</a>
 </div>
@@ -129,7 +129,7 @@ Created by {$createdBy} {$createdWhen}.<br>
 $numPosts posts.<br>
 </p>
 <p>
-Last reply by {$lastPostBy} {$lastPostWhen}<br>
+Last edit by {$lastPostBy} {$lastPostWhen}<br>
 </p>
 EOD;
 

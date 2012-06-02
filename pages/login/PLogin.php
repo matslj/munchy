@@ -29,15 +29,9 @@ $intFilter->FrontControllerIsVisitedOrDie();
 
 // -------------------------------------------------------------------------------------------
 //
-// Enable access to protected pages through direct-links.
-// Try access a protected file, redirect to login, redirect back to protected page.
+// Always redirect to latest visited page on success.
 //
-$redirectTo = 'home';
-if($gPage != 'login') {
-	$refToThisPage	= CHTMLPage::CurrentURL();
-	$redirectTo 	= $refToThisPage;
-}
-
+$redirectTo = $pc->SESSIONisSetOrSetDefault('history2');
 
 // -------------------------------------------------------------------------------------------
 //

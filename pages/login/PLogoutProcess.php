@@ -6,12 +6,25 @@
 // Logout by destroying the session.
 //
 
+// -------------------------------------------------------------------------------------------
+//
+// Get pagecontroller helpers. Useful methods to use in most pagecontrollers
+//
+$pc = new CPageController();
+//$pc->LoadLanguage(__FILE__);
+
+$redirectTo = $pc->SESSIONisSetOrSetDefault('history2');
+
 
 // -------------------------------------------------------------------------------------------
 //
-// Page specific code
+// Interception Filter, controlling access, authorithy and other checks.
 //
+$intFilter = new CInterceptionFilter();
 
+$intFilter->FrontControllerIsVisitedOrDie();
+//$intFilter->UserIsSignedInOrRecirectToSignIn();
+//$intFilter->UserIsMemberOfGroupAdminOrDie();
 
 // -------------------------------------------------------------------------------------------
 //
@@ -22,11 +35,9 @@ require_once(TP_SOURCEPATH . 'FDestroySession.php');
 
 // -------------------------------------------------------------------------------------------
 //
-// Redirect to another page
-// Support $redirect to be local uri within site or external site (starting with http://)
+// Redirect to the latest page visited before logout.
 //
-CHTMLPage::redirectTo(CPageController::POSTisSetOrSetDefault('redirect', 'login'));
+$pc->RedirectTo($redirectTo);
 exit;
-
 
 ?>
