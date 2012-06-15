@@ -43,7 +43,9 @@ define('DBSP_PGetTopicFirstEntryDetails',		DB_PREFIX . 'PGetTopicFirstEntryDetai
 define('DBSP_PGetTopicLastEntryDetails',		DB_PREFIX . 'PGetTopicLastEntryDetails');
 define('DBSP_PGetArticleAndTopicDetails',		DB_PREFIX . 'PGetArticleAndTopicDetails');
 
-// User Defined Functions UDF
+// User Defined Functions UDF and Stored procedures
+define('DBSP_AuthenticateUser',		DB_PREFIX . 'PAuthenticateUser');
+define('DBSP_CreateUser',		DB_PREFIX . 'PCreateUser');
 define('DBUDF_FCheckUserIsOwnerOrAdmin',	DB_PREFIX . 'FCheckUserIsOwnerOrAdmin');
 
 // Triggers

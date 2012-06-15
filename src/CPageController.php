@@ -18,11 +18,15 @@ class CPageController {
 	// ------------------------------------------------------------------------------------
 	//
 	// Constructor
-	//
-	public function __construct() {
-		$_SESSION['history2'] = CPageController::SESSIONisSetOrSetDefault('history1');
+	// @param historize if true -> mark page in history
+        //        BEWARE of multiple constructs of CPageController if trying to disable history.
+	public function __construct($historize = TRUE) {
+            if ($historize === TRUE) {
+		$_SESSION['history2'] = CPageController::SESSIONisSetOrSetDefault('history1', 'home');
 		$_SESSION['history1'] = CPageController::CurrentURL();
-		//print_r($_SESSION);
+		// print_r($_SESSION);
+            }
+            // print_r($_SESSION);
 	}
 
 
@@ -79,6 +83,15 @@ class CPageController {
 	public static function SESSIONisSetOrSetDefault($aEntry, $aDefault = '') {
 
 		return isset($_SESSION["$aEntry"]) && !empty($_SESSION["$aEntry"]) ? $_SESSION["$aEntry"] : $aDefault;
+	}
+
+        // ------------------------------------------------------------------------------------
+	//
+	// Sets a session attribute and return the value.
+	//
+	public static function SESSIONSet($aEntry, $value) {
+                $_SESSION[$aEntry] = $value;
+		return $value;
 	}
 
 	// ------------------------------------------------------------------------------------

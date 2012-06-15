@@ -13,15 +13,12 @@ class CHTMLPage {
     //
     // Internal variables
     //
-    protected $iPc;
 
     // ------------------------------------------------------------------------------------
     //
     // Constructor
     //
     public function __construct() {
-        $this->iPc = new CPageController();
-	// $this->iPc->LoadLanguage(__FILE__);
     }
 
     // ------------------------------------------------------------------------------------

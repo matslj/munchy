@@ -6,14 +6,14 @@
 // Verify user and password. Create a session and store userinfo in.
 //
 
+$log = CLogger::getInstance(__FILE__);
 
 // -------------------------------------------------------------------------------------------
 //
 // Get pagecontroller helpers. Useful methods to use in most pagecontrollers
 //
-$pc = new CPageController();
+$pc = new CPageController(FALSE);
 //$pc->LoadLanguage(__FILE__);
-
 
 // -------------------------------------------------------------------------------------------
 //
@@ -39,7 +39,51 @@ require_once(TP_SOURCEPATH . 'FDestroySession.php');
 //
 $user 		= $pc->POSTisSetOrSetDefault('nameUser', '');
 $password 	= $pc->POSTisSetOrSetDefault('passwordUser', '');
+$passwordAgain 	= $pc->POSTisSetOrSetDefault('passwordUserAgain', '');
+$createAccount 	= $pc->POSTisSetOrSetDefault('createNewAccount', FALSE);
 
+// Preserve history in session (if error occurs).
+$history1 	= $pc->POSTisSetOrSetDefault('history1', 'home');
+$history2 	= $pc->POSTisSetOrSetDefault('history2', 'home');
+
+// There are two paths here
+// 1) Authorize or refuse login attempt
+// 2) Create new user
+// 
+
+$log ->debug("createAccount: " . $createAccount);
+
+session_start(); 		// Must call it since we destroyed it above.
+session_regenerate_id(); 	// To avoid problems
+
+// --------------------------------------------------------------------------------------------
+// Validate input fields
+// 
+// 
+// Only when creating account a validation is needed
+if ($createAccount) {
+    $log ->debug("in here: ");
+    if (empty($password) || empty($passwordAgain)) {
+        $_SESSION['errorMessage']	= "Password fields cannot be empty";
+	$_POST['redirect'] 		= 'login&createAccount=TRUE';
+    } else if (strcmp($password, $passwordAgain) != 0) {
+        $_SESSION['errorMessage']	= "Entered and reentered password must match";
+	$_POST['redirect'] 		= 'login&createAccount=TRUE';
+    }
+    
+    if (!empty($_SESSION['errorMessage'])) {
+        // Preserve history
+        $_SESSION['history1'] = $history1;
+        $_SESSION['history2'] = $history2;
+
+        // -------------------------------------------------------------------------------------------
+        //
+        // Redirect to another page
+        //
+        $pc->RedirectTo($pc->POSTisSetOrSetDefault('redirect'));
+        exit;
+    }
+}
 
 // -------------------------------------------------------------------------------------------
 //
@@ -48,30 +92,48 @@ $password 	= $pc->POSTisSetOrSetDefault('passwordUser', '');
 //
 $db 	= new CDatabaseController();
 $mysqli = $db->Connect();
-$query = $db->LoadSQL('SQLLoginUser.php');
-$res 	= $db->Query($query);
 
+// Get the SP names
+$spLogin = $createAccount ? DBSP_CreateUser : DBSP_AuthenticateUser;
+
+// Create the query
+$query = "CALL {$spLogin}('{$user}', '{$password}');";
+$log ->debug("query: " . $query);
+// Perform the query
+$res = $db->MultiQuery($query);
+
+// Use results
+$results = Array();
+$db->RetrieveAndStoreResultsFromMultiQuery($results);
+$log -> debug("längd: " . count($results));
+$index = 0;
+// Store inserted/updated article id
+$row = $results[$index]->fetch_object();
+$log ->debug("row id: " . $row->id);
+$log ->debug("row account: " . $row->account);
+$log ->debug("row groupid: " . $row->groupid);
 
 // -------------------------------------------------------------------------------------------
 //
 // Use the results of the query to populate a session that shows we are logged in
 //
-session_start(); 			// Must call it since we destroyed it above.
-session_regenerate_id(); 	// To avoid problems
-
-$row = $res->fetch_object();
 
 // Must be one row in the resultset
-if($res->num_rows === 1) {
-	$_SESSION['idUser'] 			= $row->id;
-	$_SESSION['accountUser'] 		= $row->account;
-	$_SESSION['groupMemberUser'] 	= $row->groupid;
+if($results[$index]->num_rows === 1) {
+        $_SESSION['idUser'] 	= $row->id;
+        $_SESSION['accountUser'] 	= $row->account;
+        $_SESSION['groupMemberUser']= $row->groupid;
 } else {
-	$_SESSION['errorMessage']	= "Failed to login, wrong username or password";
-	$_POST['redirect'] 			= 'login';
+        $_SESSION['errorMessage']	= "Failed to login, wrong username or password";
+        $_POST['redirect'] 		= 'login';
+
+        // Preserve history
+        $_SESSION['history1'] = $history1;
+        $_SESSION['history2'] = $history2;
 }
 
-$res->close();
+
+$results[$index]->close();
 $mysqli->close();
 
 // -------------------------------------------------------------------------------------------

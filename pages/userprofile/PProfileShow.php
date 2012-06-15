@@ -79,29 +79,91 @@ $res = $db->Query($query);
 //
 $row = $res->fetch_object();
 
+$idUser = $row -> idUser;
+$accountUser = $row -> accountUser;
+$emailUser = $row -> emailUser;
+$idGroup = $row -> idGroup;
+$nameGroup = $row -> nameGroup;
+$avatarUser = $row -> avatarUser;
+
+
+
+$action = "?p=account-update";
+$redirect = "?p=account-settings";
+$imageLink = WS_IMAGES;
+
 $htmlMain .= <<< EOD
-<table id="userProfile">
-<tr>
-<th>Id</th>
-<td><input type='text' tab='10' name='idUser' size='80' readonly value='{$row->idUser}'></td>
-</tr>
-<tr>
-<th>Account</th>
-<td><input type='text' tab='11' name='accountUser' readonly size='80' value='{$row->accountUser}'></td>
-</tr>
-<tr>
-<th>Email</th>
-<td><input type='text' tab='12' name='emailUser' readonly size='80' value='{$row->emailUser}'></td>
-</tr>
-<tr>
-<th>Group</th>
-<td><input type='text' tab='13' name='idGroup' readonly size='80' value='{$row->idGroup}'></td>
-</tr>
-<tr>
-<th>Group description</th>
-<td><input type='text' tab='13' name='nameGroup' readonly size='80' value='{$row->nameGroup}'></td>
-</tr>
-</table>
+<div id="userProfileWrap">
+<div id="userProfile">
+
+    <!-- userid and password -->
+    <h2>Account and password</h2>
+    <form action='{$action}' method='POST'>
+        <input type='hidden' name='redirect' value='{$redirect}#basic'>
+        <input type='hidden' name='redirect-fail' value='{$redirect}'>
+        <input type='hidden' name='accountid' value='{$idUser}'>
+        <fieldset class='accountsettings'>
+            <table width='99%'>
+                <tr>
+                    <td><label for="account">Name:</label></td>
+                    <td style='text-align: right;'><input class='account-dimmed' type='text' name='account' readonly value='{$accountUser}'></td>
+                </tr>
+                <tr>
+                    <td><label for="account">Password:</label></td>
+                    <td style='text-align: right;'><input class='password' type='password' name='password1'></td>
+                </tr>
+                <tr>
+                    <td><label for="account">Password (again):</label></td>
+                    <td style='text-align: right;'><input class='password' type='password' name='password2'></td>
+                </tr>
+                <tr>
+                    <td colspan='2' style='text-align: right;'><button type='submit' name='submit' value='change-password'>Change password</button></td>
+                </tr>
+            </table>
+        </fieldset>
+    </form>
+
+    <!-- email -->
+    <h2 id='email'>Email settings</h2>
+    <form action='{$action}' method='POST'>
+        <input type='hidden' name='redirect' value='{$redirect}#email'>
+        <input type='hidden' name='redirect-failure' value='{$redirect}'>
+        <input type='hidden' name='accountid' value='{$idUser}'>
+        <fieldset class='accountsettings'>
+            <table width='99%'>
+                <tr>
+                    <td><label for="account">Email: </label></td>
+                    <td style='text-align: right;'><input class='email' type='text' name='email' value='{$emailUser}' /></td>
+                </tr>
+                <tr>
+                    <td colspan='2' style='text-align: right;'><button type='submit' name='submit' value='change-email'>Update email</button></td>
+                </tr>
+            </table>
+        </fieldset>
+    </form>
+
+    <!-- avatar -->
+    <h2 id='avatar'>Avatar</h2>
+    <form action='{$action}' method='POST'>
+        <input type='hidden' name='redirect' value='{$redirect}#avatar'>
+        <input type='hidden' name='redirect-failure' value='{$redirect}'>
+        <input type='hidden' name='accountid' value='{$idUser}'>
+        <fieldset class='accountsettings'>
+            <table width='99%'>
+                <tr>
+                    <td><label for="account">Avatar:</label></td>
+                    <td style='text-align: right;'><input class='avatar' type='text' name='avatar' value='{$avatarUser}' placeholder="Insert link to avatar here">
+                </td>
+                </tr>
+                <tr>
+                    <td><img src='{$avatarUser}' alt=':)'></td>
+                    <td style='text-align: right;'><button type='submit' name='submit' value='change-avatar'>Update avatar</button></td>
+                </tr>
+            </table>
+        </fieldset>
+    </form>
+</div> <!-- div userProfile -->
+</div> <!-- div userProfileWrap -->
 EOD;
 
 

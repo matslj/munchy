@@ -24,7 +24,8 @@ SELECT
   accountUser,
   emailUser,
   idGroup,
-  nameGroup
+  nameGroup,
+  avatarUser
 FROM {$tableUser} AS U
   INNER JOIN {$tableGroupMember} AS GM
     ON U.idUser = GM.GroupMember_idUser

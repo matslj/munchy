@@ -52,5 +52,6 @@ define('TP_SOURCEPATH',		dirname(__FILE__) . DIRECTORY_SEPARATOR . 'src' . DIREC
 define('TP_PAGESPATH',		dirname(__FILE__) . DIRECTORY_SEPARATOR . 'pages' . DIRECTORY_SEPARATOR);	// Pagecontrollers and modules
 define('TP_LANGUAGEPATH',	dirname(__FILE__) . DIRECTORY_SEPARATOR . 'lang' . DIRECTORY_SEPARATOR);	// Multi-language support
 define('TP_SQLPATH',		dirname(__FILE__) . DIRECTORY_SEPARATOR . 'sql' . DIRECTORY_SEPARATOR);	// SQL code
+define('TP_LOGPATH',		dirname(__FILE__) . DIRECTORY_SEPARATOR . 'log' . DIRECTORY_SEPARATOR);	// log
 
 ?>

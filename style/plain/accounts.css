@@ -37,5 +37,34 @@
     margin-left: auto;
     margin-right: auto;
     border: 8px dashed #4040E0;
-    padding: 10px;
+    padding: 20px 40px 20px 40px;
 }
+
+#userProfileWrap {
+    padding: 20px 150px 50px 150px;
+}
+
+
+
+/* Custom Account profile settings */
+fieldset.accountsettings input.captcha { width: 300px; }
+fieldset.accountsettings {
+    border-color:#A0A0FF;
+    width: 370px;
+}
+fieldset.accountsettings input[type=text] {
+    width: 17em;
+}
+fieldset.accountsettings input[type=password] {
+    width: 17em;
+}
+
+/* Custom Editor settings */
+fieldset.editor input.title { width: 400px; }
+fieldset.editor textarea.size98percentx300 { width: 98%; height: 300px; }
+fieldset.editor button { min-width: 8em;}
+
+/* -------------------------------------------------------------------------------------
+/* account-settings, custom settings */
+
+fieldset.account-settings input.avatar { width: 28em; }

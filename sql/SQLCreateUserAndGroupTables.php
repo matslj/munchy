@@ -20,6 +20,8 @@ $tGroupMember 	= DBT_GroupMember;
 $tStatistics 	= DBT_Statistics;
 
 // Get the SP/UDF/trigger names
+$spAuthenticateUser = DBSP_AuthenticateUser;
+$spCreateUser = DBSP_CreateUser;
 $trInsertUser	= DBTR_TInsertUser;
 
 // Create the query
@@ -41,10 +43,10 @@ CREATE TABLE {$tUser} (
 
   -- Attributes
   accountUser CHAR(20) NOT NULL UNIQUE,
-  nameUser CHAR(100) NOT NULL,
-  emailUser CHAR(100) NOT NULL,
+  nameUser CHAR(100),
+  emailUser CHAR(100),
   passwordUser CHAR(32) NOT NULL,
-  avatarUser VARCHAR(256) NULL
+  avatarUser VARCHAR(256)
 );
 
 
@@ -102,6 +104,47 @@ CREATE TABLE {$tStatistics} (
   numOfArticlesStatistics INT NOT NULL DEFAULT 0
 );
 
+--
+-- SP to create a new user
+--
+DROP PROCEDURE IF EXISTS {$spCreateUser};
+CREATE PROCEDURE {$spCreateUser}
+(
+	IN anAccountUser CHAR(20),
+	IN aPassword CHAR(32)
+)
+BEGIN
+        INSERT INTO {$tUser}
+                (accountUser, passwordUser)
+                VALUES
+                (anAccountUser, md5(aPassword));
+        INSERT INTO {$tGroupMember} (GroupMember_idUser, GroupMember_idGroup)
+	VALUES (LAST_INSERT_ID(), 'usr');
+        CALL {$spAuthenticateUser}(anAccountUser,aPassword);
+END;
+
+--
+-- SP to authenticate a user
+--
+DROP PROCEDURE IF EXISTS {$spAuthenticateUser};
+CREATE PROCEDURE {$spAuthenticateUser}
+(
+	IN anAccountUser CHAR(20),
+	IN aPassword CHAR(32)
+)
+BEGIN
+	SELECT
+	idUser AS id,
+	accountUser AS account,
+	GroupMember_idGroup AS groupid
+FROM {$tUser} AS U
+	INNER JOIN {$tGroupMember} AS GM
+		ON U.idUser = GM.GroupMember_idUser
+WHERE
+	accountUser	= anAccountUser AND
+	passwordUser 	= md5(aPassword)
+;
+END;
 
 --
 -- Create trigger for Statistics

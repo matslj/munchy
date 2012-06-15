@@ -81,7 +81,7 @@ class CDatabaseController {
 		$i = 0;
 		do {
 			$aResults[$i++] = $mysqli->store_result();
-		} while($mysqli->next_result());
+		} while($mysqli->more_results() && $mysqli->next_result());
 
 		// Check if there is a database error
         !$mysqli->errno
@@ -102,7 +102,7 @@ class CDatabaseController {
 		do {
 			$res = $mysqli->store_result();
 			$statements++;
-		} while($mysqli->next_result());
+		} while($mysqli->more_results() && $mysqli->next_result());
 
 		return $statements;
 	}
