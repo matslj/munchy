@@ -1,0 +1,448 @@
+*********** 2012/06/09 22:59:34.26946 ***********
+
+PLogin.php: redirectTo: home
+
+*********** 2012/06/09 22:59:37.67840 ***********
+
+PLoginProcess.php: createAccount: 
+PLoginProcess.php: query: CALL aut_PAuthenticateUser('doe', 'doe')
+PLoginProcess.php: row id: 2
+PLoginProcess.php: row account: doe
+PLoginProcess.php: row groupid: usr
+PLoginProcess.php: redirectTo: home
+
+*********** 2012/06/09 22:59:39.87799 ***********
+
+PLogin.php: redirectTo: home
+
+*********** 2012/06/09 22:59:43.11230 ***********
+
+PLoginProcess.php: createAccount: 
+PLoginProcess.php: query: CALL aut_PAuthenticateUser('doe', 'doe')
+PLoginProcess.php: row id: 2
+PLoginProcess.php: row account: doe
+PLoginProcess.php: row groupid: usr
+PLoginProcess.php: redirectTo: home
+
+*********** 2012/06/09 22:59:45.68940 ***********
+
+PLogin.php: redirectTo: http://localhost/dbwebb2/projektet/munchy/?p=home
+
+*********** 2012/06/09 22:59:48.81543 ***********
+
+PLoginProcess.php: createAccount: 
+PLoginProcess.php: query: CALL aut_PAuthenticateUser('doe', 'doe')
+PLoginProcess.php: row id: 2
+PLoginProcess.php: row account: doe
+PLoginProcess.php: row groupid: usr
+PLoginProcess.php: redirectTo: http://localhost/dbwebb2/projektet/munchy/?p=home
+
+*********** 2012/06/09 23:06:48.08142 ***********
+
+PLogin.php: redirectTo: http://localhost/dbwebb2/projektet/munchy/?p=home
+
+*********** 2012/06/09 23:24:05.77046 ***********
+
+PLogin.php: redirectTo: http://localhost/dbwebb2/projektet/munchy/?p=article-edit
+
+*********** 2012/06/09 23:24:10.06639 ***********
+
+PLoginProcess.php: createAccount: 
+PLoginProcess.php: query: CALL aut_PAuthenticateUser('doe', 'doe')
+PLoginProcess.php: row id: 2
+PLoginProcess.php: row account: doe
+PLoginProcess.php: row groupid: usr
+PLoginProcess.php: redirectTo: http://localhost/dbwebb2/projektet/munchy/?p=article-edit
+
+*********** 2012/06/09 23:24:21.03339 ***********
+
+PLogin.php: redirectTo: http://localhost/dbwebb2/projektet/munchy/?p=article-edit
+
+*********** 2012/06/09 23:24:50.34571 ***********
+
+PLogin.php: redirectTo: http://localhost/dbwebb2/projektet/munchy/?p=article-edit
+
+*********** 2012/06/09 23:24:55.69048 ***********
+
+PLoginProcess.php: createAccount: 
+PLoginProcess.php: query: CALL aut_PAuthenticateUser('doe', 'doe')
+PLoginProcess.php: row id: 2
+PLoginProcess.php: row account: doe
+PLoginProcess.php: row groupid: usr
+PLoginProcess.php: redirectTo: http://localhost/dbwebb2/projektet/munchy/?p=article-edit
+
+*********** 2012/06/09 23:25:18.03340 ***********
+
+PLogin.php: redirectTo: http://localhost/dbwebb2/projektet/munchy/?p=article-edit
+
+*********** 2012/06/09 23:25:23.34658 ***********
+
+PLogin.php: redirectTo: http://localhost/dbwebb2/projektet/munchy/?p=forum-list
+
+*********** 2012/06/09 23:25:27.79971 ***********
+
+PLoginProcess.php: createAccount: 
+PLoginProcess.php: query: CALL aut_PAuthenticateUser('doe', 'doe')
+PLoginProcess.php: row id: 2
+PLoginProcess.php: row account: doe
+PLoginProcess.php: row groupid: usr
+PLoginProcess.php: redirectTo: http://localhost/dbwebb2/projektet/munchy/?p=forum-list
+
+*********** 2012/06/10 00:06:18.55053 ***********
+
+PLogin.php: redirectTo: http://localhost/dbwebb2/projektet/munchy/?p=forum-list
+
+*********** 2012/06/10 00:06:22.14338 ***********
+
+PLogin.php: redirectTo: http://localhost/dbwebb2/projektet/munchy/?p=forum-list
+
+*********** 2012/06/10 00:06:25.23719 ***********
+
+PLogin.php: redirectTo: http://localhost/dbwebb2/projektet/munchy/?p=forum-list
+
+*********** 2012/06/10 00:06:26.48787 ***********
+
+PLogin.php: redirectTo: http://localhost/dbwebb2/projektet/munchy/?p=forum-list
+
+*********** 2012/06/10 00:06:29.04967 ***********
+
+PLogin.php: redirectTo: http://localhost/dbwebb2/projektet/munchy/?p=forum-list
+
+*********** 2012/06/10 00:06:32.58102 ***********
+
+PLoginProcess.php: createAccount: 
+PLoginProcess.php: query: CALL aut_PAuthenticateUser('doe', 'doe')
+PLoginProcess.php: row id: 2
+PLoginProcess.php: row account: doe
+PLoginProcess.php: row groupid: usr
+PLoginProcess.php: redirectTo: http://localhost/dbwebb2/projektet/munchy/?p=forum-list
+
+*********** 2012/06/10 00:10:11.64458 ***********
+
+PLoginProcess.php: createAccount: 
+PLoginProcess.php: query: CALL aut_PAuthenticateUser('hj', 'hjh')
+PLoginProcess.php: row id: 
+PLoginProcess.php: row account: 
+PLoginProcess.php: row groupid: 
+
+*********** 2012/06/10 00:11:43.97094 ***********
+
+PLoginProcess.php: createAccount: 
+PLoginProcess.php: query: CALL aut_PAuthenticateUser('doe', 'doe')
+PLoginProcess.php: row id: 2
+PLoginProcess.php: row account: doe
+PLoginProcess.php: row groupid: usr
+
+*********** 2012/06/10 00:12:19.78550 ***********
+
+PLoginProcess.php: createAccount: 
+PLoginProcess.php: query: CALL aut_PAuthenticateUser('jkj', 'kjk')
+PLoginProcess.php: row id: 
+PLoginProcess.php: row account: 
+PLoginProcess.php: row groupid: 
+
+*********** 2012/06/10 00:12:23.64270 ***********
+
+PLoginProcess.php: createAccount: 
+PLoginProcess.php: query: CALL aut_PAuthenticateUser('doe', 'doe')
+PLoginProcess.php: row id: 2
+PLoginProcess.php: row account: doe
+PLoginProcess.php: row groupid: usr
+
+*********** 2012/06/10 00:12:37.26872 ***********
+
+PLoginProcess.php: createAccount: 
+PLoginProcess.php: query: CALL aut_PAuthenticateUser('doe', 'doe')
+PLoginProcess.php: row id: 2
+PLoginProcess.php: row account: doe
+PLoginProcess.php: row groupid: usr
+
+*********** 2012/06/10 00:13:28.28419 ***********
+
+PLoginProcess.php: createAccount: 
+PLoginProcess.php: query: CALL aut_PAuthenticateUser('doe', 'doe')
+PLoginProcess.php: row id: 2
+PLoginProcess.php: row account: doe
+PLoginProcess.php: row groupid: usr
+
+*********** 2012/06/10 00:14:10.34688 ***********
+
+PLoginProcess.php: createAccount: 
+PLoginProcess.php: query: CALL aut_PAuthenticateUser('jhjh', 'hjhj')
+PLoginProcess.php: row id: 
+PLoginProcess.php: row account: 
+PLoginProcess.php: row groupid: 
+
+*********** 2012/06/10 00:14:38.62763 ***********
+
+PLoginProcess.php: createAccount: 
+PLoginProcess.php: query: CALL aut_PAuthenticateUser('doe', 'doe')
+PLoginProcess.php: row id: 2
+PLoginProcess.php: row account: doe
+PLoginProcess.php: row groupid: usr
+
+*********** 2012/06/10 00:43:07.55101 ***********
+
+PLoginProcess.php: createAccount: 
+PLoginProcess.php: query: CALL aut_PAuthenticateUser('fsd', 'df')
+PLoginProcess.php: row id: 
+PLoginProcess.php: row account: 
+PLoginProcess.php: row groupid: 
+
+*********** 2012/06/10 00:43:14.73728 ***********
+
+PLoginProcess.php: createAccount: 
+PLoginProcess.php: query: CALL aut_PAuthenticateUser('doe', 'doe')
+PLoginProcess.php: row id: 2
+PLoginProcess.php: row account: doe
+PLoginProcess.php: row groupid: usr
+
+*********** 2012/06/10 13:15:02.55272 ***********
+
+PLoginProcess.php: createAccount: 
+PLoginProcess.php: query: CALL aut_PAuthenticateUser('jkjk', 'jk')
+PLoginProcess.php: row id: 
+PLoginProcess.php: row account: 
+PLoginProcess.php: row groupid: 
+
+*********** 2012/06/10 13:15:08.03412 ***********
+
+PLoginProcess.php: createAccount: 
+PLoginProcess.php: query: CALL aut_PAuthenticateUser('doe', 'doe')
+PLoginProcess.php: row id: 2
+PLoginProcess.php: row account: doe
+PLoginProcess.php: row groupid: usr
+
+*********** 2012/06/10 13:15:21.90932 ***********
+
+PLoginProcess.php: createAccount: 
+PLoginProcess.php: query: CALL aut_PAuthenticateUser('jkjk', 'jkk')
+PLoginProcess.php: row id: 
+PLoginProcess.php: row account: 
+PLoginProcess.php: row groupid: 
+
+*********** 2012/06/10 13:15:25.80120 ***********
+
+PLoginProcess.php: createAccount: 
+PLoginProcess.php: query: CALL aut_PAuthenticateUser('doe', 'doe')
+PLoginProcess.php: row id: 2
+PLoginProcess.php: row account: doe
+PLoginProcess.php: row groupid: usr
+
+*********** 2012/06/10 13:30:59.31740 ***********
+
+PLoginProcess.php: createAccount: 
+PLoginProcess.php: query: CALL aut_PAuthenticateUser('hg', 'hg')
+PLoginProcess.php: row id: 
+PLoginProcess.php: row account: 
+PLoginProcess.php: row groupid: 
+
+*********** 2012/06/10 13:31:02.61222 ***********
+
+PLoginProcess.php: createAccount: 
+PLoginProcess.php: query: CALL aut_PAuthenticateUser('doe', 'doe')
+PLoginProcess.php: row id: 2
+PLoginProcess.php: row account: doe
+PLoginProcess.php: row groupid: usr
+
+*********** 2012/06/10 13:31:23.89339 ***********
+
+PLoginProcess.php: createAccount: 
+PLoginProcess.php: query: CALL aut_PAuthenticateUser('doe', 'doe')
+PLoginProcess.php: row id: 2
+PLoginProcess.php: row account: doe
+PLoginProcess.php: row groupid: usr
+
+*********** 2012/06/10 13:31:47.06543 ***********
+
+PLoginProcess.php: createAccount: TRUE
+
+*********** 2012/06/10 13:32:23.62783 ***********
+
+PLoginProcess.php: createAccount: 
+PLoginProcess.php: query: CALL aut_PAuthenticateUser('rum', 'rum')
+PLoginProcess.php: row id: 
+PLoginProcess.php: row account: 
+PLoginProcess.php: row groupid: 
+
+*********** 2012/06/10 13:32:28.87787 ***********
+
+PLoginProcess.php: createAccount: 
+PLoginProcess.php: query: CALL aut_PAuthenticateUser('rum', 'rum')
+PLoginProcess.php: row id: 
+PLoginProcess.php: row account: 
+PLoginProcess.php: row groupid: 
+
+*********** 2012/06/10 13:46:29.94050 ***********
+
+PLoginProcess.php: createAccount: TRUE
+PLoginProcess.php: in here: 
+PLoginProcess.php: query: CALL aut_PCreateUser('rum', 'rum')
+
+*********** 2012/06/10 13:49:27.91020 ***********
+
+PLoginProcess.php: createAccount: TRUE
+PLoginProcess.php: in here: 
+PLoginProcess.php: query: CALL aut_PCreateUser('tur', 'tur')
+
+*********** 2012/06/10 13:50:18.03492 ***********
+
+PLoginProcess.php: createAccount: TRUE
+PLoginProcess.php: in here: 
+PLoginProcess.php: query: CALL aut_PCreateUser('robby', 'robby')
+
+*********** 2012/06/10 13:52:49.90836 ***********
+
+PLoginProcess.php: createAccount: TRUE
+PLoginProcess.php: in here: 
+PLoginProcess.php: query: CALL aut_PCreateUser('uu', 'uu')
+PLoginProcess.php: längd: 1
+
+*********** 2012/06/10 13:55:18.45716 ***********
+
+PLoginProcess.php: createAccount: TRUE
+PLoginProcess.php: in here: 
+PLoginProcess.php: query: CALL aut_PCreateUser('rum', 'rum')
+PLoginProcess.php: längd: 2
+
+*********** 2012/06/10 15:04:53.29977 ***********
+
+PLoginProcess.php: createAccount: TRUE
+PLoginProcess.php: in here: 
+PLoginProcess.php: query: CALL aut_PCreateUser('doff', 'doff');
+PLoginProcess.php: längd: 2
+
+*********** 2012/06/10 15:06:26.06624 ***********
+
+PLoginProcess.php: createAccount: TRUE
+PLoginProcess.php: in here: 
+PLoginProcess.php: query: CALL aut_PCreateUser('uff', 'uff');
+PLoginProcess.php: längd: 2
+PLoginProcess.php: row id: 
+PLoginProcess.php: row account: 
+PLoginProcess.php: row groupid: 
+
+*********** 2012/06/10 15:06:45.12778 ***********
+
+PLoginProcess.php: createAccount: 
+PLoginProcess.php: query: CALL aut_PAuthenticateUser('uff', 'uff');
+PLoginProcess.php: längd: 2
+PLoginProcess.php: row id: 
+PLoginProcess.php: row account: 
+PLoginProcess.php: row groupid: 
+
+*********** 2012/06/10 15:11:49.59675 ***********
+
+PLoginProcess.php: createAccount: TRUE
+PLoginProcess.php: in here: 
+PLoginProcess.php: query: CALL aut_PCreateUser('doff', 'doff');
+PLoginProcess.php: längd: 2
+PLoginProcess.php: row id: 
+PLoginProcess.php: row account: 
+PLoginProcess.php: row groupid: 
+
+*********** 2012/06/10 15:11:57.81526 ***********
+
+PLoginProcess.php: createAccount: 
+PLoginProcess.php: query: CALL aut_PAuthenticateUser('doff', 'doff');
+PLoginProcess.php: längd: 2
+PLoginProcess.php: row id: 
+PLoginProcess.php: row account: 
+PLoginProcess.php: row groupid: 
+
+*********** 2012/06/10 15:12:04.01842 ***********
+
+PLoginProcess.php: createAccount: 
+PLoginProcess.php: query: CALL aut_PAuthenticateUser('doff', 'doff');
+PLoginProcess.php: längd: 2
+PLoginProcess.php: row id: 
+PLoginProcess.php: row account: 
+PLoginProcess.php: row groupid: 
+
+*********** 2012/06/10 15:14:24.26891 ***********
+
+PLoginProcess.php: createAccount: TRUE
+PLoginProcess.php: in here: 
+PLoginProcess.php: query: CALL aut_PCreateUser('doff', 'doff');
+PLoginProcess.php: längd: 2
+PLoginProcess.php: row id: 
+PLoginProcess.php: row account: 
+PLoginProcess.php: row groupid: 
+
+*********** 2012/06/10 15:14:32.14344 ***********
+
+PLoginProcess.php: createAccount: 
+PLoginProcess.php: query: CALL aut_PAuthenticateUser('doff', 'doff');
+PLoginProcess.php: längd: 2
+PLoginProcess.php: row id: 
+PLoginProcess.php: row account: 
+PLoginProcess.php: row groupid: 
+
+*********** 2012/06/10 17:44:04.95597 ***********
+
+PLoginProcess.php: createAccount: TRUE
+PLoginProcess.php: in here: 
+PLoginProcess.php: query: CALL aut_PCreateUser('nuff', 'nuff');
+PLoginProcess.php: längd: 2
+PLoginProcess.php: row id: 4
+PLoginProcess.php: row account: nuff
+PLoginProcess.php: row groupid: usr
+
+*********** 2012/06/10 17:44:14.86285 ***********
+
+PLoginProcess.php: createAccount: 
+PLoginProcess.php: query: CALL aut_PAuthenticateUser('nuff', 'nuff');
+PLoginProcess.php: längd: 2
+PLoginProcess.php: row id: 4
+PLoginProcess.php: row account: nuff
+PLoginProcess.php: row groupid: usr
+
+*********** 2012/06/10 18:25:31.11326 ***********
+
+PLoginProcess.php: createAccount: TRUE
+PLoginProcess.php: in here: 
+PLoginProcess.php: query: CALL aut_PCreateUser('opp', 'opp');
+PLoginProcess.php: längd: 2
+
+*********** 2012/06/10 18:27:52.11221 ***********
+
+PLoginProcess.php: createAccount: TRUE
+PLoginProcess.php: in here: 
+PLoginProcess.php: query: CALL aut_PCreateUser('ee', 'ee');
+PLoginProcess.php: längd: 2
+PLoginProcess.php: row id: 6
+PLoginProcess.php: row account: ee
+PLoginProcess.php: row groupid: usr
+
+*********** 2012/06/10 18:29:01.81561 ***********
+
+PLoginProcess.php: createAccount: TRUE
+PLoginProcess.php: in here: 
+
+*********** 2012/06/10 18:30:06.47264 ***********
+
+PLoginProcess.php: createAccount: TRUE
+PLoginProcess.php: in here: 
+
+*********** 2012/06/10 18:30:28.90918 ***********
+
+PLoginProcess.php: createAccount: TRUE
+PLoginProcess.php: in here: 
+
+*********** 2012/06/10 23:55:57.17486 ***********
+
+PLoginProcess.php: createAccount: 
+PLoginProcess.php: query: CALL aut_PAuthenticateUser('doe', 'doe');
+PLoginProcess.php: längd: 2
+PLoginProcess.php: row id: 2
+PLoginProcess.php: row account: doe
+PLoginProcess.php: row groupid: usr
+
+*********** 2012/06/13 20:18:49.72080 ***********
+
+PLoginProcess.php: createAccount: 
+PLoginProcess.php: query: CALL aut_PAuthenticateUser('doe', 'doe');
+PLoginProcess.php: längd: 2
+PLoginProcess.php: row id: 2
+PLoginProcess.php: row account: doe
+PLoginProcess.php: row groupid: usr
