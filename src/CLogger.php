@@ -1,5 +1,5 @@
 <?php
-define("NL", "\r\n"); // Suited for win-environment
+
 // ===========================================================================================
 //
 // Class CLogger
@@ -8,38 +8,20 @@ define("NL", "\r\n"); // Suited for win-environment
 // 
 // Author: Mats Ljungquist
 //
-class CLogger {
+abstract class CLogger {
 
 	// ------------------------------------------------------------------------------------
 	//
 	// Internal variables
 	//
-        private $fh = null;
-        private $newLine = "";
-        private $logger = "";
+        protected $logger = "";
 
 
 	// ------------------------------------------------------------------------------------
 	//
 	// Constructor
         //
-	private function __construct($aLogger, $aNewLine, $aFilename) {
-            $this -> logger = $aLogger;
-            $this -> newLine = $aNewLine;
-            $filename = TP_LOGPATH . $aFilename;
-            $this -> fh = null;
-
-            $log = "*********** " . date("Y/m/d H:i:s"). substr((string)microtime(), 1, 6) . " ***********" . $aNewLine;
-            
-            $mode = "";
-            if (file_exists($filename)) {
-                $mode = "ab";
-                $log = $this -> newLine . $this -> newLine . $log;
-            } else {
-                $mode = "wb";
-            }
-            $this -> fh = fopen($filename, $mode) or die("can't open file");
-            fwrite($this -> fh, $log);
+	private function __construct() {
 	}
 
 
@@ -48,7 +30,6 @@ class CLogger {
 	// Destructor
 	//
 	public function __destruct() {
-                fclose($this -> fh);
 	}
         
         // ------------------------------------------------------------------------------------
@@ -59,15 +40,25 @@ class CLogger {
         // from the file needing the logger.
         // 
 	// @param aLogger For this class to be meningful the caller should use __FILE__ as a parameter
-        public static function getInstance($aLogger, $aNewLine = NL, $aFilename = "sitelog.txt") {
-            return new CLogger($aLogger, $aNewLine, $aFilename);
+        public static function getInstance($aLogger) {
+            switch (WS_LOGGER) {
+                case 'file':
+                    // file based logger
+                    return CLoggerFile::getInstance($aLogger);
+                    break;
+                default:
+                    // dummy = no logging
+                    return CLoggerDummy::getInstance($aLogger);
+                    break;
+            }
         }
 
-        public function debug($aMessage) {
-            $log = $this -> newLine . basename($this -> logger) . ": " . $aMessage;
-            fwrite($this -> fh, $log);
-        }
-	
+        // ------------------------------------------------------------------------------------
+	//
+	// Writes a message to the logging system.
+        // 
+	// @param the message to write.
+        abstract function debug($aMessage);
 
 } // End of Of Class
 

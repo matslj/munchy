@@ -14,7 +14,7 @@
 //
 // Get pagecontroller helpers. Useful methods to use in most pagecontrollers
 //
-$pc = new CPageController(FALSE);
+$pc = CPageController::getInstance(FALSE);
 // $pc->LoadLanguage(__FILE__);
 
 

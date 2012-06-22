@@ -12,7 +12,7 @@
 //
 require_once(TP_SOURCEPATH . 'CPageController.php');
 
-$pc = new CPageController();
+$pc = CPageController::getInstance();
 
 // -------------------------------------------------------------------------------------------
 //

@@ -6,55 +6,43 @@
 // Show the users profile information in a form and make it possible to edit the information.
 //
 
+$log = CLogger::getInstance(__FILE__);
 
+// Get user-object
+$uo = CUserData::getInstance();
+
+$userId = $uo -> getId();
+
+$log -> debug("UO = " . $uo -> getId());
 // -------------------------------------------------------------------------------------------
 //
 // Get pagecontroller helpers. Useful methods to use in most pagecontrollers
 //
-require_once(TP_SOURCEPATH . 'CPageController.php');
-
-$pc = new CPageController();
+$pc = CPageController::getInstance();
 //$pc->LoadLanguage(__FILE__);
-
 
 // -------------------------------------------------------------------------------------------
 //
 // Interception Filter, access, authorithy and other checks.
 //
-require_once(TP_SOURCEPATH . 'CInterceptionFilter.php');
-
 $intFilter = new CInterceptionFilter();
-
 $intFilter->frontcontrollerIsVisitedOrDie();
 $intFilter->UserIsSignedInOrRecirectToSignIn();
 //$intFilter->userIsMemberOfGroupAdminOrDie();
-
-
-// -------------------------------------------------------------------------------------------
-//
-// Take care of global pageController settings, can exist for several pagecontrollers.
-// Decide how page is displayed, review CHTMLPage for supported types.
-//
-$displayAs = $pc->GETisSetOrSetDefault('pc_display', '');
-
+$intFilter ->IsUserMemberOfGroupAdminOrIsCurrentUser($userId);
 
 // -------------------------------------------------------------------------------------------
 //
 // Page specific code
 //
-
-//$settingsMenu = $pc->GetSidebarMenu(unserialize(MENU_SETTINGSBAR));
-
 $htmlLeft = "";
-
-//$headerMenu = $pc->GetSidebarMenu(unserialize(MENU_ACCOUNTBAR));
-
+$htmlRight = "";
 $htmlMain = <<<EOD
 <h1>Account settings</h1>
 EOD;
 
-$htmlRight = "";
-
+// I could have gone directly on the userObject in session, but this wont work
+// if admin is supposed to be able to change userdata. Therefore I read from db.
 
 // -------------------------------------------------------------------------------------------
 //
@@ -63,33 +51,38 @@ $htmlRight = "";
 $db 	= new CDatabaseController();
 $mysqli = $db->Connect();
 
+// Get the SP names
+$spUserDetails = DBSP_GetUserDetails;
 
-// -------------------------------------------------------------------------------------------
-//
-// Prepare and perform a SQL query.
-//
-$user = $_SESSION['accountUser'];
-$query = $db->LoadSQL('SUserDetails.php');
-$res = $db->Query($query);
-
+// Create the query
+$query = "CALL {$spUserDetails}({$userId});";
+$log ->debug($query);
+// Perform the query
+$res = $db->MultiQuery($query);
 
 // -------------------------------------------------------------------------------------------
 //
 // Show the results of the query
 //
-$row = $res->fetch_object();
+// Use results
+$results = Array();
+$db->RetrieveAndStoreResultsFromMultiQuery($results);
+$index = 0;
+$row = $results[$index]->fetch_object();
 
-$idUser = $row -> idUser;
-$accountUser = $row -> accountUser;
-$emailUser = $row -> emailUser;
-$idGroup = $row -> idGroup;
-$nameGroup = $row -> nameGroup;
-$avatarUser = $row -> avatarUser;
+$idUser = $row -> id;
+$accountUser = $row -> account;
+$emailUser = $row -> email;
+$idGroup = $row -> groupid;
+$nameGroup = $row -> groupname;
+$avatarUser = $row -> avatar;
+$gravatar = $row -> gravatar;
+$gravatarsmall = $row -> gravatarsmall;
 
 
 
-$action = "?p=account-update";
-$redirect = "?p=account-settings";
+$action = "?p=profilep";
+$redirect = "?p=profile";
 $imageLink = WS_IMAGES;
 
 $htmlMain .= <<< EOD
@@ -162,23 +155,39 @@ $htmlMain .= <<< EOD
             </table>
         </fieldset>
     </form>
+    
+    <!-- gravatar -->
+    <h2 id='gravatar'>Gravatar</h2>
+    <form action='{$action}' method='POST'>
+        <input type='hidden' name='redirect' value='{$redirect}#gravatar'>
+        <input type='hidden' name='redirect-failure' value='{$redirect}'>
+        <input type='hidden' name='accountid' value='{$idUser}'>
+        <fieldset class='accountsettings'>
+        <table width='99%'>
+            <tr>
+                <td colspan='2'><p>User your Gravatar from <a href='http://gravatar.com'>gravatar.com</a></p></td>
+            </tr>
+            <tr>
+                <td><label for="gravatar">Gravatar id (email):</label></td>
+                <td style='text-align: right;'><input class='gravatar' type='text' name='gravatar' value='{$gravatar}' placeholder="Insert gravatar id here"></td>
+            </tr>
+            <tr>
+                <td><img src='{$gravatarsmall}' alt=''></td>
+                <td style='text-align: right;'><button type='submit' name='submit' value='change-gravatar'>Update gravatar</button></td>
+            </tr>
+        </table>
+        </fieldset>
+    </form>
+    
 </div> <!-- div userProfile -->
 </div> <!-- div userProfileWrap -->
 EOD;
-
-
-// -------------------------------------------------------------------------------------------
-//
-// Use the results of the query
-//
-
-$res->close();
-
 
 // -------------------------------------------------------------------------------------------
 //
 // Close the connection to the database
 //
+$results[$index]->close();
 $mysqli->close();
 
 

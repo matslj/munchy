@@ -5,8 +5,9 @@
 //
 // Nice to have utility for common methods useful in most pagecontrollers.
 //
-
 class CPageController {
+    
+        private static $instance;
 
 	// ------------------------------------------------------------------------------------
 	//
@@ -19,11 +20,11 @@ class CPageController {
 	//
 	// Constructor
 	// @param historize if true -> mark page in history
-        //        BEWARE of multiple constructs of CPageController if trying to disable history.
-	public function __construct($historize = TRUE) {
+        //        BEWARE of multiple constructs of CPageController if trying to disable history (solved - singelton).
+	private function __construct($historize) {
             if ($historize === TRUE) {
-		$_SESSION['history2'] = CPageController::SESSIONisSetOrSetDefault('history1', 'home');
-		$_SESSION['history1'] = CPageController::CurrentURL();
+		$_SESSION['history2'] = self::SESSIONisSetOrSetDefault('history1', 'home');
+		$_SESSION['history1'] = self::CurrentURL();
 		// print_r($_SESSION);
             }
             // print_r($_SESSION);
@@ -37,7 +38,13 @@ class CPageController {
 	public function __destruct() {
 		;
 	}
-
+        
+        public static function getInstance($historize = TRUE) {
+            if (empty(self::$instance)) {
+                self::$instance = new self($historize);
+            }
+            return self::$instance;
+        }
 
 	// ------------------------------------------------------------------------------------
 	//
@@ -74,6 +81,15 @@ class CPageController {
 	public static function POSTisSetOrSetDefault($aEntry, $aDefault = '') {
 
 		return isset($_POST["$aEntry"]) && !empty($_POST["$aEntry"]) ? $_POST["$aEntry"] : $aDefault;
+	}
+        
+        // ------------------------------------------------------------------------------------
+	//
+	// Check if corresponding $_POST[''] is set, then use it or return the default value.
+	//
+	public static function REQUESTisSetOrSetDefault($aEntry, $aDefault = '') {
+
+		return isset($_REQUEST["$aEntry"]) && !empty($_REQUEST["$aEntry"]) ? $_REQUEST["$aEntry"] : $aDefault;
 	}
 
         // ------------------------------------------------------------------------------------

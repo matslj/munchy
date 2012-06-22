@@ -11,6 +11,11 @@
 
 
 class CInterceptionFilter {
+    
+        private $uo = null;
+        private $pc = null;
+        
+        public static $LOG = null;
 
 	// ------------------------------------------------------------------------------------
 	//
@@ -22,7 +27,9 @@ class CInterceptionFilter {
 	// Constructor
 	//
 	public function __construct() {
-		;
+            $this -> uo = CUserData::GetInstance();
+            $this -> pc = CPageController::getInstance();
+            self::$LOG = CLogger::getInstance(__FILE__);
 	}
 
 
@@ -43,7 +50,7 @@ class CInterceptionFilter {
 	public function FrontControllerIsVisitedOrDie() {
 
                 // När man använder det reserverade ordet 'global' så innebär det att i en funktion
-                // talar om att man vill referera till den globala 'varianten' av variabeln
+                // talar om att man vill referera till den globala 'varianten' av variabeln (Closesurs)
 		global $gPage; // Always defined in frontcontroller
 
 		if(!isset($gPage)) {
@@ -58,7 +65,7 @@ class CInterceptionFilter {
 	//
 	public function UserIsSignedInOrRecirectToSignIn() {
 
-		if(!isset($_SESSION['accountUser'])) {
+		if(!$this -> uo -> isAuthenticated()) {
                     $_SESSION['errorMessage'] = 'Du måste vara inloggad för att komma åt den sidan';
                     $_SESSION['redirect'] = $_GET['p'];
                     require_once(TP_SOURCEPATH . 'CHTMLPage.php');
@@ -69,14 +76,13 @@ class CInterceptionFilter {
                 }
 	}
 
-
 	// ------------------------------------------------------------------------------------
 	//
 	// Check if admin
 	//
 	public function UserIsMemberOfGroupAdminOrDie() {
             // User must be member of group adm or die
-            if($_SESSION['groupMemberUser'] != 'adm')
+            if(!$this -> uo -> isAdmin())
                     die('You do not have the authourity to access this page');
 	}
 
@@ -85,11 +91,21 @@ class CInterceptionFilter {
 	// Check if user belongs to the admin group or is a specific user.
 	//
 	public function IsUserMemberOfGroupAdminOrIsCurrentUser($aUserId) {
-
-		$isAdmGroup 		= (isset($_SESSION['groupMemberUser']) && $_SESSION['groupMemberUser'] == 'adm') ? TRUE : FALSE;
-		$isCurrentUser	= (isset($_SESSION['idUser']) && $_SESSION['idUser'] == $aUserId) ? TRUE : FALSE;
-
-		return $isAdmGroup || $isCurrentUser;
+		return $this -> uo -> isAdmin() || $this -> uo -> isUser($aUserId);
+	}
+        
+        // ------------------------------------------------------------------------------------
+	//
+	// Check if user belongs to the admin group or is a specific user.
+	//
+	public function IsUserMemberOfGroupAdminOrIsCurrentUserOrTerminate($aUserId) {
+                $userId = empty($aUserId) ? $this -> uo -> getId() : $aUserId;
+                self::$LOG -> debug("userid: " . $userId);
+                // sanitize data
+                // $sanUserId = filter_var($userId, FILTER_SANITIZE_STRING);
+                CPageController::IsNumericOrDie($userId);
+		if (!($this -> uo -> isAdmin() || $this -> uo -> isUser($userId)))
+                        die('Unauthorized access. Terminating');
 	}
 
 

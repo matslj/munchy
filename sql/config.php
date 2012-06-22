@@ -33,7 +33,7 @@ define('DBT_GroupMember',	DB_PREFIX . 'GroupMember');
 define('DBT_Statistics',	DB_PREFIX . 'Statistics');
 define('DBT_Article',		DB_PREFIX . 'Article');
 
-// Stored procedures
+// Stored routines concerning articles/posts
 define('DBSP_PGetArticleDetailsAndArticleList',	DB_PREFIX . 'PGetArticleDetailsAndArticleList');
 define('DBSP_PGetArticleDetails',			DB_PREFIX . 'PGetArticleDetails');
 define('DBSP_PInsertOrUpdateArticle',			DB_PREFIX . 'PInsertOrUpdateArticle');
@@ -43,10 +43,17 @@ define('DBSP_PGetTopicFirstEntryDetails',		DB_PREFIX . 'PGetTopicFirstEntryDetai
 define('DBSP_PGetTopicLastEntryDetails',		DB_PREFIX . 'PGetTopicLastEntryDetails');
 define('DBSP_PGetArticleAndTopicDetails',		DB_PREFIX . 'PGetArticleAndTopicDetails');
 
-// User Defined Functions UDF and Stored procedures
+// Stored routines concerning user
 define('DBSP_AuthenticateUser',		DB_PREFIX . 'PAuthenticateUser');
 define('DBSP_CreateUser',		DB_PREFIX . 'PCreateUser');
+define('DBSP_GetUserDetails',           DB_PREFIX . 'PGetUserDetails');
+define('DBSP_SetUserDetails',           DB_PREFIX . 'PSetUserDetails');
+define('DBSP_SetUserPassword',           DB_PREFIX . 'PSetUserPassword');
+define('DBSP_SetUserEmail',           DB_PREFIX . 'PSetUserEmail');
+define('DBSP_SetUserAvatar',           DB_PREFIX . 'PSetUserAvatar');
+define('DBSP_SetUserGravatar',           DB_PREFIX . 'PSetUserGravatar');
 define('DBUDF_FCheckUserIsOwnerOrAdmin',	DB_PREFIX . 'FCheckUserIsOwnerOrAdmin');
+define('DBUDF_GetGravatarLinkFromEmail',	DB_PREFIX . 'FGetGravatarLinkFromEmail');
 
 // Triggers
 define('DBTR_TInsertUser',		DB_PREFIX . 'TInsertUser');

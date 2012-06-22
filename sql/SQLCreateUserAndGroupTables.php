@@ -23,6 +23,14 @@ $tStatistics 	= DBT_Statistics;
 $spAuthenticateUser = DBSP_AuthenticateUser;
 $spCreateUser = DBSP_CreateUser;
 $trInsertUser	= DBTR_TInsertUser;
+$spGetUserDetails = DBSP_GetUserDetails;
+$spSetUserDetails = DBSP_SetUserDetails;
+$spSetUserPassword = DBSP_SetUserPassword;
+$spSetUserEmail = DBSP_SetUserEmail;
+$spSetUserAvatar = DBSP_SetUserAvatar;
+$spSetUserGravatar = DBSP_SetUserGravatar;
+
+$fGetGravatarLinkFromEmail = DBUDF_GetGravatarLinkFromEmail;
 
 // Create the query
 $query = <<<EOD
@@ -46,7 +54,8 @@ CREATE TABLE {$tUser} (
   nameUser CHAR(100),
   emailUser CHAR(100),
   passwordUser CHAR(32) NOT NULL,
-  avatarUser VARCHAR(256)
+  avatarUser VARCHAR(256),
+  gravatarUser VARCHAR(100) NULL
 );
 
 
@@ -136,6 +145,9 @@ BEGIN
 	SELECT
 	idUser AS id,
 	accountUser AS account,
+        nameUser AS name,
+        emailUser AS email,
+        avatarUser AS avatar,
 	GroupMember_idGroup AS groupid
 FROM {$tUser} AS U
 	INNER JOIN {$tGroupMember} AS GM
@@ -144,6 +156,145 @@ WHERE
 	accountUser	= anAccountUser AND
 	passwordUser 	= md5(aPassword)
 ;
+END;
+        
+--
+-- SP to get user details
+--
+DROP PROCEDURE IF EXISTS {$spGetUserDetails};
+CREATE PROCEDURE {$spGetUserDetails}
+(
+	IN anIdUser INT
+)
+BEGIN
+	SELECT
+	idUser AS id,
+	accountUser AS account,
+        nameUser AS name,
+        emailUser AS email,
+        avatarUser AS avatar,
+        gravatarUser AS gravatar,
+        {$fGetGravatarLinkFromEmail}(gravatarUser, 60) AS gravatarsmall,
+	GroupMember_idGroup AS groupid,
+        nameGroup AS groupname
+FROM {$tUser} AS U
+	INNER JOIN {$tGroupMember} AS GM
+		ON U.idUser = GM.GroupMember_idUser
+        INNER JOIN {$tGroup} AS G
+                ON GM.GroupMember_idGroup = G.idGroup
+WHERE
+	idUser = anIdUser
+;
+END;
+      
+--
+-- SP to set user details
+--
+DROP PROCEDURE IF EXISTS {$spSetUserPassword};
+CREATE PROCEDURE {$spSetUserPassword}
+(
+        IN anIdUser INT,
+        IN aPassword CHAR(32)
+)
+BEGIN
+        UPDATE {$tUser} SET
+                passwordUser = md5(aPassword)
+        WHERE
+                idUser = anIdUser
+        LIMIT 1;
+END;
+        
+--
+-- SP to set user details
+--
+DROP PROCEDURE IF EXISTS {$spSetUserEmail};
+CREATE PROCEDURE {$spSetUserEmail}
+(
+        IN anIdUser INT,
+        IN anEmailUser CHAR(100)
+)
+BEGIN
+        UPDATE {$tUser} SET
+                emailUser = anEmailUser
+        WHERE
+                idUser = anIdUser
+        LIMIT 1;
+END;
+        
+--
+-- SP to set user details
+--
+DROP PROCEDURE IF EXISTS {$spSetUserAvatar};
+CREATE PROCEDURE {$spSetUserAvatar}
+(
+        IN anIdUser INT,
+        IN anAvatarUser VARCHAR(256)
+)
+BEGIN
+        UPDATE {$tUser} SET
+                avatarUser = anAvatarUser
+        WHERE
+                idUser = anIdUser
+        LIMIT 1;
+END;
+        
+--
+-- SP to set user details
+--
+DROP PROCEDURE IF EXISTS {$spSetUserGravatar};
+CREATE PROCEDURE {$spSetUserGravatar}
+(
+        IN anIdUser INT,
+        IN aGravatarUser VARCHAR(256)
+)
+BEGIN
+        UPDATE {$tUser} SET
+                gravatarUser = aGravatarUser
+        WHERE
+                idUser = anIdUser
+        LIMIT 1;
+END;
+        
+--
+-- SP to set user details
+--
+DROP PROCEDURE IF EXISTS {$spSetUserDetails};
+CREATE PROCEDURE {$spSetUserDetails}
+(
+        IN anIdUser INT,
+        IN aNameUser CHAR(100),
+        IN anEmailUser CHAR(100),
+        IN anAvatarUser VARCHAR(256),
+        IN aPassword CHAR(32)
+)
+BEGIN
+        UPDATE {$tUser} SET
+                nameUser = aNameUser,
+                emailUser = anEmailUser,
+                avatarUser = anAvatarUser,
+                passwordUser = md5(aPassword)
+        WHERE
+                idUser = anIdUser
+        LIMIT 1;
+END;
+        
+-- 
+-- Function to create a link to gravatar.com from an emailadress.
+-- http://en.gravatar.com/site/implement/url
+--
+DROP FUNCTION IF EXISTS {$fGetGravatarLinkFromEmail};
+CREATE FUNCTION {$fGetGravatarLinkFromEmail}
+(	
+    aEmail CHAR(100),	
+    aSize INT
+)
+RETURNS CHAR(255)
+READS SQL DATA
+BEGIN	
+    DECLARE link CHAR(255);
+    SELECT CONCAT('http://www.gravatar.com/avatar/', MD5(LOWER(aEmail)), '.jpg?s=', aSize)
+        INTO link;
+    RETURN link;
 END;
 
 --

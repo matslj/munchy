@@ -30,6 +30,13 @@ define('WS_JAVASCRIPT',	WS_SITELINK . 'js/');	// JavaScript code
 
 define('WS_HOME',	'home');	// Starting page
 
+// The logging system
+// Available logging modes are:
+// * 'file' - saves to a log file in TP_LOGPATH. Ensure writing rights to that path.
+// * 'dummy' - means no logging.
+// * No logger (commented away) - the same as 'dummy'
+define('WS_LOGGER',	'file');
+
 // -------------------------------------------------------------------------------------------
 //
 // Settings for commonly used external resources, for example javascripts.
@@ -48,7 +55,7 @@ require_once('config_nav.php');
 // Support for storing in directories, no need to store everything under one directory
 //
 define('TP_ROOT',		dirname(__FILE__) . DIRECTORY_SEPARATOR);	// The root of installation
-define('TP_SOURCEPATH',		dirname(__FILE__) . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR);	// Classes, functions, code
+define("TP_SOURCEPATH",		dirname(__FILE__) . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR);	// Classes, functions, code
 define('TP_PAGESPATH',		dirname(__FILE__) . DIRECTORY_SEPARATOR . 'pages' . DIRECTORY_SEPARATOR);	// Pagecontrollers and modules
 define('TP_LANGUAGEPATH',	dirname(__FILE__) . DIRECTORY_SEPARATOR . 'lang' . DIRECTORY_SEPARATOR);	// Multi-language support
 define('TP_SQLPATH',		dirname(__FILE__) . DIRECTORY_SEPARATOR . 'sql' . DIRECTORY_SEPARATOR);	// SQL code

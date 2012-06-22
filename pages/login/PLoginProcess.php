@@ -1,4 +1,5 @@
 <?php
+
 // ===========================================================================================
 //
 // PLoginProcess.php
@@ -12,7 +13,7 @@ $log = CLogger::getInstance(__FILE__);
 //
 // Get pagecontroller helpers. Useful methods to use in most pagecontrollers
 //
-$pc = new CPageController(FALSE);
+$pc = CPageController::getInstance(FALSE);
 //$pc->LoadLanguage(__FILE__);
 
 // -------------------------------------------------------------------------------------------
@@ -21,7 +22,10 @@ $pc = new CPageController(FALSE);
 //
 $intFilter = new CInterceptionFilter();
 
+
+
 $intFilter->FrontControllerIsVisitedOrDie();
+
 //$intFilter->UserIsSignedInOrRecirectToSignIn();
 //$intFilter->UserIsMemberOfGroupAdminOrDie();
 
@@ -98,7 +102,7 @@ $spLogin = $createAccount ? DBSP_CreateUser : DBSP_AuthenticateUser;
 
 // Create the query
 $query = "CALL {$spLogin}('{$user}', '{$password}');";
-$log ->debug("query: " . $query);
+// $log ->debug("query: " . $query);
 // Perform the query
 $res = $db->MultiQuery($query);
 
@@ -109,9 +113,6 @@ $log -> debug("längd: " . count($results));
 $index = 0;
 // Store inserted/updated article id
 $row = $results[$index]->fetch_object();
-$log ->debug("row id: " . $row->id);
-$log ->debug("row account: " . $row->account);
-$log ->debug("row groupid: " . $row->groupid);
 
 // -------------------------------------------------------------------------------------------
 //
@@ -120,9 +121,11 @@ $log ->debug("row groupid: " . $row->groupid);
 
 // Must be one row in the resultset
 if($results[$index]->num_rows === 1) {
-        $_SESSION['idUser'] 	= $row->id;
-        $_SESSION['accountUser'] 	= $row->account;
-        $_SESSION['groupMemberUser']= $row->groupid;
+        // Store user
+        // Get user-object
+        $uo = CUserData::getInstance();
+        $uo -> populateUserData($row->id, $row->account, $row->name, $row->email, $row->avatar, $row->groupid);
+        $log -> debug("id = " . $uo -> getId());
 } else {
         $_SESSION['errorMessage']	= "Failed to login, wrong username or password";
         $_POST['redirect'] 		= 'login';

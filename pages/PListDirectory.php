@@ -42,7 +42,7 @@ $HREF = "?p=ls";
 //
 // Get pagecontroller helpers. Useful methods to use in most pagecontrollers
 //
-$pc = new CPageController();
+$pc = CPageController::getInstance();
 //$pc->LoadLanguage(__FILE__);
 
 

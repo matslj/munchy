@@ -13,8 +13,8 @@
 //
 // Require the files that are common for all pagecontrollers.
 //
-session_start();
-require_once('config.php');
+
+require_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'config.php');
 
 //
 // start a timer to time the generation of this page (excluding config.php)
@@ -29,7 +29,7 @@ if(WS_TIMER) {
 function __autoload($class_name) {
     require_once(TP_SOURCEPATH . $class_name . '.php');
 }
-
+session_start();
 // Allow only access to pagecontrollers through frontcontroller
 // $indexIsVisited = TRUE;
 
@@ -71,6 +71,8 @@ switch ($gPage) {
     // User profile
     //
     case 'profile': require_once(TP_PAGESPATH . 'userprofile/PProfileShow.php');
+        break;
+    case 'profilep': require_once(TP_PAGESPATH . 'userprofile/PProfileProcess.php');
         break;
 
     //
