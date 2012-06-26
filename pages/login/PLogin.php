@@ -33,6 +33,7 @@ $intFilter->FrontControllerIsVisitedOrDie();
 // Take care of _GET/_POST variables. Store them in a variable (if they are set).
 //
 $create	= $pc->GETisSetOrSetDefault('createAccount', FALSE);
+$captchaChoice = $pc->GETisSetOrSetDefault('captchaChoice', "");
 
 // -------------------------------------------------------------------------------------------
 //
@@ -44,6 +45,7 @@ $history2 = $pc->SESSIONisSetOrSetDefault('history2');
 // Define variables
 $title = "Login";
 $buttonText = "Log on";
+$captcha = CCaptcha::getInstance($captchaChoice);
 
 // Create new account?
 if ($create) {
@@ -62,6 +64,20 @@ $htmlRight .= <<<EOD
 <p>
 Already have an account? Goto <a href='?p=login'>login</a>.
 </p>
+<p>
+Captcha choices:
+</p>
+<ul>
+<li>
+    <a href='?p=login&createAccount=TRUE&captchaChoice=recaptcha'>reCaptcha</a>
+</li>
+<li>
+    <a href='?p=login&createAccount=TRUE&captchaChoice=securimage'>Securimage</a>
+</li>
+<li>
+    <a href='?p=login&createAccount=TRUE&captchaChoice=dummy'>No captcha</a>
+</li>
+</ul>
 EOD;
 } else {
 $htmlRight .= <<<EOD
@@ -119,6 +135,13 @@ $htmlMain .= <<<EOD
 <td>
 <input id="passwordUserAgain" class="password" type="password" name="passwordUserAgain">
 </td>
+</tr>
+<tr>
+    <td>&nbsp;</td>
+    <td>
+        <!-- Captcha? -->
+        {$captcha -> getAsHTML()}
+    </td>
 </tr>
 EOD;
 }

@@ -4,8 +4,15 @@
 //
 // PLoginProcess.php
 //
-// Verify user and password. Create a session and store userinfo in.
+// Creates a session and store userinfo in.
+// 
+// There are two paths for this login processor:
+// 1) Authorize or refuse login attempt
+// 2) Create new user
 //
+// Both destory the current session and log on the user (if creation/authentication is ok).
+//
+// @author Mats Ljungquist
 
 $log = CLogger::getInstance(__FILE__);
 
@@ -22,20 +29,10 @@ $pc = CPageController::getInstance(FALSE);
 //
 $intFilter = new CInterceptionFilter();
 
-
-
 $intFilter->FrontControllerIsVisitedOrDie();
 
 //$intFilter->UserIsSignedInOrRecirectToSignIn();
 //$intFilter->UserIsMemberOfGroupAdminOrDie();
-
-
-// -------------------------------------------------------------------------------------------
-//
-// Destroy the current session (logout user), if it exists.
-//
-require_once(TP_SOURCEPATH . 'FDestroySession.php');
-
 
 // -------------------------------------------------------------------------------------------
 //
@@ -46,53 +43,39 @@ $password 	= $pc->POSTisSetOrSetDefault('passwordUser', '');
 $passwordAgain 	= $pc->POSTisSetOrSetDefault('passwordUserAgain', '');
 $createAccount 	= $pc->POSTisSetOrSetDefault('createNewAccount', FALSE);
 
-// Preserve history in session (if error occurs).
-$history1 	= $pc->POSTisSetOrSetDefault('history1', 'home');
-$history2 	= $pc->POSTisSetOrSetDefault('history2', 'home');
-
-// There are two paths here
-// 1) Authorize or refuse login attempt
-// 2) Create new user
-// 
-
-$log ->debug("createAccount: " . $createAccount);
-
-session_start(); 		// Must call it since we destroyed it above.
-session_regenerate_id(); 	// To avoid problems
+$errorRedirect = "login&createAccount={$createAccount}";
 
 // --------------------------------------------------------------------------------------------
 // Validate input fields
 // 
-// 
-// Only when creating account a validation is needed
+// Note: Only create account requires special validation.
 if ($createAccount) {
     $log ->debug("in here: ");
     if (empty($password) || empty($passwordAgain)) {
         $_SESSION['errorMessage']	= "Password fields cannot be empty";
-	$_POST['redirect'] 		= 'login&createAccount=TRUE';
     } else if (strcmp($password, $passwordAgain) != 0) {
         $_SESSION['errorMessage']	= "Entered and reentered password must match";
-	$_POST['redirect'] 		= 'login&createAccount=TRUE';
+    } else {
+        // Validate captcha
+        $captcha = CCaptcha::getInstance();
+        if (!$captcha -> validateInput()) {
+            $_SESSION['errorMessage'] = $captcha ->getErrorMsg();
+        }
     }
     
+    // If there is an error exit back to login page.
     if (!empty($_SESSION['errorMessage'])) {
-        // Preserve history
-        $_SESSION['history1'] = $history1;
-        $_SESSION['history2'] = $history2;
-
-        // -------------------------------------------------------------------------------------------
-        //
-        // Redirect to another page
-        //
-        $pc->RedirectTo($pc->POSTisSetOrSetDefault('redirect'));
+        $pc->RedirectTo($errorRedirect);
         exit;
     }
 }
 
+// Validation passed. Now we will authenticate/create and log on the user.
+// This requires destorying the old session.
+
 // -------------------------------------------------------------------------------------------
 //
-// Create a new database object, connect to the database, get the query and execute it.
-// Relates to files in directory TP_SQLPATH.
+// Create a new database object, connect to the database, call stored procedure.
 //
 $db 	= new CDatabaseController();
 $mysqli = $db->Connect();
@@ -121,6 +104,13 @@ $row = $results[$index]->fetch_object();
 
 // Must be one row in the resultset
 if($results[$index]->num_rows === 1) {
+        // Authentication / create was successfull.
+        // - Destroy current session (logout user), if it exists, and create a new one.
+        // - Store new user in session
+        require_once(TP_SOURCEPATH . 'FDestroySession.php');
+        // Recreate session
+        session_start(); 		// Must call it since we destroyed it above.
+        session_regenerate_id(); 	// To avoid problems
         // Store user
         // Get user-object
         $uo = CUserData::getInstance();
@@ -128,11 +118,7 @@ if($results[$index]->num_rows === 1) {
         $log -> debug("id = " . $uo -> getId());
 } else {
         $_SESSION['errorMessage']	= "Failed to login, wrong username or password";
-        $_POST['redirect'] 		= 'login';
-
-        // Preserve history
-        $_SESSION['history1'] = $history1;
-        $_SESSION['history2'] = $history2;
+        $_POST['redirect'] 		= $errorRedirect;
 }
 
 

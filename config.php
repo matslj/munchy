@@ -37,6 +37,18 @@ define('WS_HOME',	'home');	// Starting page
 // * No logger (commented away) - the same as 'dummy'
 define('WS_LOGGER',	'dummy');
 
+// The system captcha
+// Available captchas are:
+// * 'securimage' - use the securimage captcha.
+// * 'recaptcha' - use the reCaptcha captcha
+// * 'dummy' - means no captcha.
+// * No captcha (commented away) - the same as 'dummy'
+define('WS_CAPTCHA',	'recaptcha');
+
+// reCaptcha requires public and private keys and they are provided here (for www.student.bth.se)
+define('reCAPTCHA_PUBLIC',	'6LdbRtMSAAAAAFSLlEJIyIcJWSpYSjrz9ptnWEMk');
+define('reCAPTCHA_PRIVATE',	'6LdbRtMSAAAAAE5BdpVoSOBWCHj2-V07OjnxzGhp');
+
 // -------------------------------------------------------------------------------------------
 //
 // Settings for commonly used external resources, for example javascripts.

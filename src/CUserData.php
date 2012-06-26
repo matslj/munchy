@@ -16,7 +16,6 @@
 //
 class CUserData {
     
-    // private static $instanceUserData = null; // Better to store directly in session
     private $id;
     private $account;
     private $name;
@@ -32,33 +31,12 @@ class CUserData {
         ;
     }
     
-//    public static function getInstance() {
-//        if (empty(self::$instanceUserData)) {
-//            if (isset($_SESSION[__CLASS__]['uo'])) {
-//                self::$instanceUserData = $_SESSION[__CLASS__]['uo'];
-//            } else {
-//                self::$instanceUserData = new self();
-//            }
-//        }
-//        return self::$instanceUserData;
-//    }
-    
     public static function getInstance() {
         if (!isset($_SESSION[__CLASS__]['uo'])) {
             $_SESSION[__CLASS__]['uo'] = new self();
         }
         return $_SESSION[__CLASS__]['uo'];
     }
-    
-//    private function storeInSession() {
-//        // $_SESSION[__CLASS__]['uo'] = $this;
-//            
-//        // In order to make this class backwards compatible, with my legacy code
-//        // I do this (for code not using the CUser-object):
-//        $_SESSION['idUser'] = $this -> id;
-//        $_SESSION['accountUser'] = $this -> account;
-//        $_SESSION['groupMemberUser']= $this -> idGroup;
-//    }
     
     // This method does some additional handling when a store is made
     // All methods manipulating private data in this class must call this method.
