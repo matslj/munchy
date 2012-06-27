@@ -52,7 +52,7 @@ CREATE TABLE {$tUser} (
   -- Attributes
   accountUser CHAR(20) NOT NULL UNIQUE,
   nameUser CHAR(100),
-  emailUser CHAR(100),
+  emailUser CHAR(100) NULL UNIQUE,
   passwordUser CHAR(32) NOT NULL,
   avatarUser VARCHAR(256),
   gravatarUser VARCHAR(100) NULL
@@ -138,7 +138,7 @@ END;
 DROP PROCEDURE IF EXISTS {$spAuthenticateUser};
 CREATE PROCEDURE {$spAuthenticateUser}
 (
-	IN anAccountUser CHAR(20),
+	IN anAccountUserOrEmail CHAR(100),
 	IN aPassword CHAR(32)
 )
 BEGIN
@@ -153,8 +153,15 @@ FROM {$tUser} AS U
 	INNER JOIN {$tGroupMember} AS GM
 		ON U.idUser = GM.GroupMember_idUser
 WHERE
-	accountUser	= anAccountUser AND
+        (
+	accountUser	= anAccountUserOrEmail AND
 	passwordUser 	= md5(aPassword)
+        )
+        OR
+        (
+	emailUser	= anAccountUserOrEmail AND
+	passwordUser 	= md5(aPassword)
+        )
 ;
 END;
         
